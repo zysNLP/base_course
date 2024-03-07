@@ -1,0 +1,54 @@
+name: "chatglm2-6b"
+backend: "python"
+max_batch_size: 0
+
+input [
+  {
+    name: "prompt"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  },
+  {
+    name: "history"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  },
+  {
+    name: "temperature"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  },
+  {
+    name: "max_token"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  },
+  {
+    name: "history_len"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]
+output [
+  {
+    name: "response"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  },
+  {
+    name: "history"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]
+parameters: {
+  key: "EXECUTION_ENV_PATH",
+  value: {string_value: "$$TRITON_MODEL_DIRECTORY/python-3-8.tar.gz"}
+}
+instance_group [
+  {
+      count: 1
+      kind: KIND_GPU
+      gpus: [ 0 ]
+  }
+]

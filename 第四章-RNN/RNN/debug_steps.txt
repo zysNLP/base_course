@@ -1,0 +1,16 @@
+# 调试RNN模块的步骤
+
+一. Debug --- rnn = RNN(5, 1)
+　　1. 跳转rnn.__init__
+　　2. 跳转rnncell.__init__
+   
+二. Debug --- y_pred = rnn.forward(X[i])
+    1. 跳转rnn.forward
+    2. 跳转rnncell.forward
+
+三. Debug --- rnn.backward
+    1. turn to rnn.backward
+    2. turn to rnncell.backward
+    3. turn to rnncell.grad_w_i2h...
+
+四. Debug --- rnn.update_weight

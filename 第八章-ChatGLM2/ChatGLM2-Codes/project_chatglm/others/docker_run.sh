@@ -1,0 +1,1 @@
+tritonserver --model-repository=/models --http-port 8000 --grpc-port 8001 --metrics-port 8002 --log-verbose 3
